@@ -128,7 +128,7 @@ document.getElementById('cardsid').innerHTML = data.map((array, index) => `
 `).join('');
 
 const portfoliopopup = (value) => {
-  popcontainer.innerHTML = `
+  popcontainer.innerHTML = '
   <div id="blurry"></div>
   <div class="popupcontainer">
       <div class="topcontainer">
@@ -154,9 +154,9 @@ const portfoliopopup = (value) => {
 
       </div>
       
-  </div>`;
+  </div>';
   document.body.appendChild(popcontainer);
-  const closingpop = document.querySelector('#popclosingbutton');
+  const closingpop = document.getElementById('#popclosingbutton');
   closingpop.addEventListener('click', () => document.body.removeChild(document.querySelector('.popupcontainer')));
 };
 
