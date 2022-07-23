@@ -10,7 +10,7 @@ const item3 = document.getElementById('menuitemcontact');
 const popcontainer = document.createElement('div');
 const data = [
   {
-    name: 'Website Protfolio',
+    name: 'Testing',
     description: "Loret ipsum of privately personalized reads; no accounts or sign-ups required. has been the industry's standard",
     image: './images/popup.png',
     technology: ['HTML', 'CSS', 'Ruby'],
@@ -157,8 +157,40 @@ const portfoliopopup = (value) => {
   </div>`;
   document.body.appendChild(popcontainer);
   const closingpop = document.querySelector('#popclosingbutton');
-  closingpop.addEventListener('click', () => document.body.removeChild(document.querySelector('.popupcontainer')));
+  closingpop.addEventListener('click', () => document.body.removeChild(document.querySelector('.popupcontainermain')));
 };
 
 const buttonportfolio = document.querySelectorAll('.orangebottom');
 buttonportfolio.forEach((button) => button.addEventListener('click', portfoliopopup));
+
+// *FORM VALIDATION:
+
+const formemail = document.getElementById('inputemail');
+const form = document.getElementById('contactform');
+const labelerror = document.getElementById('errormessage');
+const labelcheck = document.getElementById('checkmessage');
+
+form.addEventListener('submit', (e) => {
+  if (formemail.value === formemail.value.toLowerCase()) {
+    labelcheck.classList.remove('nodisplay');
+    labelerror.classList.add('nodisplay');
+  } else {
+    labelerror.classList.remove('nodisplay');
+    labelcheck.classList.add('nodisplay');
+  }
+  e.preventDefault();
+});
+
+// *DATA STORAGE:
+
+const dataform = () => localStorage.setItem('userdata', [form.full_name.value, form.email.value, form.message.value]);
+
+document.addEventListener('keydown', dataform);
+
+const userstorage = localStorage.getItem('userdata').split(',');
+const loadname = document.getElementById('inputname');
+const loademail = document.getElementById('inputemail');
+const loadtext = document.getElementById('textarea');
+document.addEventListener('DOMContentLoaded', () => {
+  [(loadname.value), (loademail.value), (loadtext.value)] = userstorage;
+});
